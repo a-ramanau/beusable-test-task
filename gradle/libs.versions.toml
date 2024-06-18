@@ -5,6 +5,8 @@ pmd = "7.1.0"
 jacoco = "0.8.12"
 lombok-plugin = "8.6"
 shadow-plugin = "8.1.1"
+springboot-plugin = "3.3.0"
+springdm-plugin = "1.1.5"
 junit = "5.10.2"
 pioneer = "2.2.0"
 mockito = "5.12.0"
@@ -14,6 +16,8 @@ mapstruct = "1.5.5.Final"
 [libraries]
 lombok-plugin = { module = "io.freefair.gradle:lombok-plugin", version.ref = "lombok-plugin" }
 shadow-plugin = { module = "com.github.johnrengelman:shadow", version.ref = "shadow-plugin" }
+springboot-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springboot-plugin" }
+springdm-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springdm-plugin" }
 junit = { module = "org.junit:junit-bom", version.ref = "junit"  }
 junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "pioneer" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }

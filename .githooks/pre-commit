@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-source local-configuration/lib-system-checks.sh
-
 check_branch_name() {
   BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
   PATTERN='^(feature|task|bugfix)\/BU-[0-9]+-([a-zA-Z0-9]|-)*[a-zA-Z0-9]+$'

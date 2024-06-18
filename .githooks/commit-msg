@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-source local-configuration/lib-system-checks.sh
-
 INPUT_FILE=$1
 START_LINE=$(head -n1 "$INPUT_FILE")
 
