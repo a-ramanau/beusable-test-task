@@ -79,7 +79,7 @@ tasks {
     }
 
     val exclusionsFilterForJacoco = listOf(
-        "**/**MapperImpl.*"
+        "**/**Application.*"
     )
 
     jacocoTestReport {
