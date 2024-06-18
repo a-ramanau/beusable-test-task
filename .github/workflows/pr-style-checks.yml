@@ -1,0 +1,58 @@
+name: PR Name & Branch Name & Commit Messages Checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: write-all
+
+jobs:
+  pr_naming_rules:
+    timeout-minutes: 2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check branch name
+        uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        with:
+          script: |
+            const pattern = /(^(feature|task|bugfix)\/BU-[0-9]+-([a-zA-Z0-9]|-)*[a-zA-Z0-9]+$)|(^dependabot\/.+$)/
+            const { BRANCH_NAME } = process.env
+            if (!pattern.test(BRANCH_NAME)) {
+              core.setFailed('The branch name is invalid. Please, rewrite it according to the conventions.')
+            }
+      - name: Check pr title
+        uses: actions/github-script@v7
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        with:
+          script: |
+            const pattern = /^BU-[0-9]+: [A-Z]+.*[^\.]+$/
+            const { PR_TITLE } = process.env
+            if (!pattern.test(PR_TITLE)) {
+              core.setFailed('The PR title is invalid. Please, rewrite it according to the conventions.')
+            }
+      - name: Check commit messages
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pattern = /^BU-[0-9]+: [A-Z]+.*|(^Merge.*)|(^Revert.*)/
+            const commits = await github.rest.pulls.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            if(commits.data.some(({commit}) => !pattern.test(commit.message))) {
+              core.setFailed('Some commit messages are invalid. Please, rewrite them according to the conventions.')
+            }

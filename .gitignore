@@ -1,0 +1,14 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+.idea/**
+!.idea/checkstyle-idea.xml
+!.idea/externalDependencies.xml
+!.idea/misc.xml
+!.idea/codeStyles/
+!.idea/codeStyles/**
+!.idea/runConfigurations/
+!.idea/runConfigurations/**
+*.iws
+*.iml
+*.ipr

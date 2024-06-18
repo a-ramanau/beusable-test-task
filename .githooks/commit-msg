@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+source local-configuration/lib-system-checks.sh
+
+INPUT_FILE=$1
+START_LINE=$(head -n1 "$INPUT_FILE")
+
+check_commit_msg() {
+  COMMIT_MSG=$1
+  PATTERN='^BU-[0-9]+: [A-Z]+.*|(^Merge.*)|(^Revert.*)'
+  if ! echo "$COMMIT_MSG" | LC_ALL=en_US.UTF-8 grep -qE "$PATTERN"; then
+    echo "Some commit messages are invalid. Please, rewrite them according to the conventions."
+    return 1
+  fi
+}
+
+echo "Commit-msg githook triggered... "
+check_commit_msg "$START_LINE"
