@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: room-occupancy-manager
+
+guests-file: guests.json
+premium: 100.00
