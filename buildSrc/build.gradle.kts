@@ -30,4 +30,6 @@ repositories {
 dependencies {
     implementation(findLibrary("lombok-plugin"))
     implementation(findLibrary("shadow-plugin"))
+    implementation(findLibrary("springboot-plugin"))
+    implementation(findLibrary("springdm-plugin"))
 }

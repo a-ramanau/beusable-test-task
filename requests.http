@@ -1,0 +1,10 @@
+### Calculate occupancy example request:
+GET http://localhost:9999/api/v1/occupancy?premiumRooms=3&economyRooms=3
+### Calculate occupancy example response:
+#{
+#  "premiumUsage": 3,
+#  "economyUsage": 3,
+#  "premiumRevenue": 738.0,
+#  "economyRevenue": 167.99
+#}
+###

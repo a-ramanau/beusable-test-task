@@ -1,26 +1,30 @@
 [versions]
 java = "21"
-checkstyle = "10.16.0"
-pmd = "7.1.0"
+checkstyle = "10.17.0"
+pmd = "7.2.0"
 jacoco = "0.8.12"
 lombok-plugin = "8.6"
 shadow-plugin = "8.1.1"
+springboot-plugin = "3.3.0"
+springdm-plugin = "1.1.5"
 junit = "5.10.2"
+jsonunit = "3.2.7"
 pioneer = "2.2.0"
 mockito = "5.12.0"
-assertj = "3.25.3"
-mapstruct = "1.5.5.Final"
+assertj = "3.26.0"
+openapi = "2.5.0"
 
 [libraries]
 lombok-plugin = { module = "io.freefair.gradle:lombok-plugin", version.ref = "lombok-plugin" }
 shadow-plugin = { module = "com.github.johnrengelman:shadow", version.ref = "shadow-plugin" }
+springboot-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springboot-plugin" }
+springdm-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springdm-plugin" }
 junit = { module = "org.junit:junit-bom", version.ref = "junit"  }
 junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "pioneer" }
+jsonunit = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref = "jsonunit"  }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
-mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
-mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
 
 [bundles]
-mapstruct = ["mapstruct", "mapstruct-processor"]

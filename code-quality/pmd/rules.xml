@@ -28,6 +28,8 @@
     <exclude name="ShortMethodName"/>
     <exclude name="ShortVariable"/>
     <exclude name="TooManyStaticImports"/>
+    <exclude name="UseExplicitTypes"/>
+    <exclude name="AtLeastOneConstructor"/>
   </rule>
   <rule ref="category/java/codestyle.xml/LinguisticNaming">
     <properties>
@@ -88,22 +90,6 @@
   <rule ref="category/java/performance.xml"/>
   <rule ref="category/java/security.xml"/>
 
-  <rule name="LocalVariableDeclarationViolation"
-    language="java"
-    message="Local variable should be defined with 'final var' keywords"
-    class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-    <priority>1</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-            //LocalVariableDeclaration[string(@TypeInferred) = "false" or string(@Final) = "false"]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
   <rule name="OptionalOrElseThrowWithoutArguments"
     language="java"
     message="Optional .orElseThrow() should be used with a meaningful exception as a parameter"
@@ -159,56 +145,6 @@
     </properties>
   </rule>
 
-  <rule name="MockBeanDeclarationViolation"
-    language="java"
-    message="Mock and spy beans should be defined in BaseIntegrationTest"
-    class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-    <priority>1</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-              //ClassDeclaration[@SimpleName != "BaseIntegrationTest"]/ClassBody/FieldDeclaration/ModifierList
-              /Annotation[@SimpleName = "SpyBean" or @SimpleName = "MockBean"]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
-  <rule name="WireMockIntegrationTestDeclarationViolation"
-    language="java"
-    message="Wiremock integration tests should extend WireMockIntegrationTest"
-    class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-    <priority>1</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-              //Annotation[@SimpleName = "AutoConfigureWireMock"]/ancestor::ClassDeclaration[@SimpleName != "WireMockIntegrationTest"]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
-  <rule name="IntegrationTestNameConventionViolation"
-    language="java"
-    message="Integration test class name should end with 'IntegrationTest'"
-    class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-    <priority>1</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-              //ExtendsList/ClassType[@SimpleName = "BaseIntegrationTest"]
-              /ancestor::ClassDeclaration[not(ends-with(@SimpleName, "IntegrationTest"))]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
   <rule name="ValidationDeclarationViolation"
     language="java"
     message="Validation should be used on a service level"
@@ -219,23 +155,6 @@
         <value>
           <![CDATA[
               //Annotation[@SimpleName="RestController"]/../following-sibling::ClassBody/descendant::Annotation[@SimpleName="Valid"]
-          ]]>
-        </value>
-      </property>
-    </properties>
-  </rule>
-
-  <rule name="RepositoryQueryDeclarationViolation"
-    language="java"
-    message="Consider using JPA specifications or @Query annotation"
-    class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
-    <priority>1</priority>
-    <properties>
-      <property name="xpath">
-        <value>
-          <![CDATA[
-              //ExtendsList/ClassType[@SimpleName = "UuidEntityRepository"]/../following-sibling::ClassBody
-              /descendant::MethodDeclaration/ModifierList[not(*)]
           ]]>
         </value>
       </property>

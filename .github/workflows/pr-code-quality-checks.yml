@@ -1,0 +1,49 @@
+name: PR Code Quality Checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: write-all
+
+jobs:
+  pr_code_quality_checks:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+      - name: Build java modules
+        run: ./gradlew clean build
+      - name: Add code coverage report as a comment to PR
+        id: jacoco-report
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
+          title: Code Coverage
+          update-comment: true
+          min-coverage-overall: 95
+          min-coverage-changed-files: 95
+      - name: Fail PR if changed files coverage is less than 95%
+        if: ${{ steps.jacoco-report.outputs.coverage-changed-files < 95.0 }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.setFailed('Changed files coverage is less than 95%!')
+

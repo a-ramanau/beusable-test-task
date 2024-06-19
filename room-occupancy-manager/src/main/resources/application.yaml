@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: occupancy-manager
+
+server:
+  port: 9999
+
+guests-file: guests.json
+premium: 100.00
