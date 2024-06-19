@@ -12,6 +12,7 @@ jsonunit = "3.2.7"
 pioneer = "2.2.0"
 mockito = "5.12.0"
 assertj = "3.26.0"
+openapi = "2.5.0"
 
 [libraries]
 lombok-plugin = { module = "io.freefair.gradle:lombok-plugin", version.ref = "lombok-plugin" }
@@ -24,5 +25,6 @@ jsonunit = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref 
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "openapi" }
 
 [bundles]

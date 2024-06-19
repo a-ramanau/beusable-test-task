@@ -1,6 +1,6 @@
 spring:
   application:
-    name: room-occupancy-manager
+    name: occupancy-manager
 
 server:
   port: 9999
