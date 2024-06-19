@@ -2,5 +2,8 @@ spring:
   application:
     name: room-occupancy-manager
 
+server:
+  port: 9999
+
 guests-file: guests.json
 premium: 100.00
