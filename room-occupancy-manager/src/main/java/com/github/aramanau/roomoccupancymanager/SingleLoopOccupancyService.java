@@ -30,13 +30,14 @@ public class SingleLoopOccupancyService extends AbstractOccupancyService {
     for (var i = 0; i < guests.length; i++) {
       final var guest = guests[i];
       final var isPremiumGuest = isPremiumGuest(guest);
-      final var hasPremiumRooms = usagePremium < premiumRooms;
-      final var hasMoreEconomyGuestsThanRooms = guests.length - i > economyRooms - usageEconomy;
+      final var isPremiumRooms = usagePremium < premiumRooms;
+      final var isEconomyRooms = usageEconomy < economyRooms;
+      final var isMoreEconomyGuestsThanRooms = guests.length - i > economyRooms - usageEconomy;
 
-      if (hasPremiumRooms && (isPremiumGuest || hasMoreEconomyGuestsThanRooms)) {
+      if (isPremiumRooms && (isPremiumGuest || isMoreEconomyGuestsThanRooms)) {
         usagePremium++;
         revenuePremium += guest;
-      } else if (!isPremiumGuest && usageEconomy < economyRooms) {
+      } else if (!isPremiumGuest && isEconomyRooms) {
         usageEconomy++;
         revenueEconomy += guest;
       }
