@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     id("spring-conventions")
 }
@@ -10,5 +12,10 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(libs.jsonunit)
+}
+
+
+tasks.withType<BootJar> {
+    getMainClass().set("com.github.aramanau.roomoccupancymanager.OccupancyManagerApplication")
 }
 
