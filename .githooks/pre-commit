@@ -10,18 +10,5 @@ check_branch_name() {
   fi
 }
 
-per_file_check() {
-  for file in $(git diff --cached --name-only); do
-    if [ -f "$file" ]; then
-      if check_commands terraform --silent && [[ "$file" =~ (.*)\.tfvars|(.*)\.tf|(.*)\.tftest\.hcl ]]; then
-        echo "Formatting terraform: $file"
-        # shellcheck disable=SC2015
-        terraform fmt -no-color -list=false "$file" && git add "$file" || true
-      fi
-    fi
-  done
-}
-
 echo "Pre-commit githook triggered... "
 check_branch_name
-per_file_check

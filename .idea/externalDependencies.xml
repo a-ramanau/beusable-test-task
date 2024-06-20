@@ -6,6 +6,5 @@
     <plugin id="PMDPlugin" min-version="1.9.2" />
     <plugin id="com.github.yunabraska.githubworkflowplugin" min-version="3.2.1" />
     <plugin id="com.dsoftware.ghtoolbar" min-version="2024.2.2" />
-    <plugin id="org.mapstruct.intellij" min-version="1.7.0" />
   </component>
 </project>
