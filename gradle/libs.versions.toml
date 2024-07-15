@@ -11,7 +11,7 @@ junit = "5.10.3"
 jsonunit = "3.3.0"
 pioneer = "2.2.0"
 mockito = "5.12.0"
-assertj = "3.26.0"
+assertj = "3.26.3"
 openapi = "2.6.0"
 
 [libraries]
