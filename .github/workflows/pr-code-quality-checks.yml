@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew clean build
       - name: Add code coverage report as a comment to PR
         id: jacoco-report
-        uses: madrapps/jacoco-report@v1.6.1
+        uses: madrapps/jacoco-report@v1.7.0
         with:
           paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
